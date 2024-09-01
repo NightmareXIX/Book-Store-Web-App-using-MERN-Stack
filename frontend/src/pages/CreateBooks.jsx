@@ -12,7 +12,7 @@ const CreateBooks = () => {
   const [publishYear, setPublishYear] = useState('');
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-  const { enqueSnackbar } = useSnackbar();
+  const { enqueueSnackbar } = useSnackbar();
 
   const handleSaveBook = () => {
     const data = {
@@ -20,17 +20,17 @@ const CreateBooks = () => {
       author,
       publishYear,
     };
-    setLoading = true;
+    setLoading(true);
     axios
       .post('http://localhost:5555/books', data)
       .then(() => {
-        setLoading = false;
-        enqueSnackbar('Book Created successfully', { varient: 'success' });
+        setLoading(false);
+        enqueueSnackbar('Book Created successfully', { varient: 'success' });
         navigate('/');
       })
       .catch((error) => {
-        setLoading = false;
-        enqueSnackbar('Error', { variant: 'error' });
+        setLoading(false);
+        enqueueSnackbar('Error', { variant: 'error' });
         console.log(error);
       });
   };
@@ -55,7 +55,7 @@ const CreateBooks = () => {
           <input 
           type="text"
           value={author}
-          onChange={(e) => setTitle(e.target.value)} 
+          onChange={(e) => setAuthor(e.target.value)} 
           className='border-2 border-gray-500 px-4 py-2 w-full'
           />
         </div>
@@ -64,7 +64,7 @@ const CreateBooks = () => {
           <input 
           type="text"
           value={publishYear}
-          onChange={(e) => setTitle(e.target.value)} 
+          onChange={(e) => setPublishYear(e.target.value)} 
           className='border-2 border-gray-500 px-4 py-2 w-full'
           />
         </div>
