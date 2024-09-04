@@ -2,6 +2,7 @@ import express, { response } from "express";
 import { PORT, mongoDBURL } from "./config.js";
 import mongoose, { mongo } from "mongoose";
 import booksRoute from './routes/booksRoute.js';
+import usersRoute from './routes/usersRoute.js';
 import cors from 'cors';
 
 // create express app
@@ -28,6 +29,7 @@ app.get('/', (request, response) => {
 });
 
 app.use('/books', booksRoute);
+app.use('/register', usersRoute);
 
 mongoose
     .connect(mongoDBURL)
